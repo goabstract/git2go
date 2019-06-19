@@ -3,6 +3,16 @@ package git
 /*
 #include <git2.h>
 
+// Abstract change:
+// GIT_OPT_ENABLE_STRICT_HASH_VERIFICATION provides a security layer
+// by hashing all objects and making sure their sha is correct.
+// Disabling makes working on big repo _much_ faster.
+// See https://github.com/libgit2/libgit2/issues/4951 for more context
+int _disable_strict_hashing()
+{
+	return git_libgit2_opts(GIT_OPT_ENABLE_STRICT_HASH_VERIFICATION, 0);
+}
+
 int _go_git_opts_get_search_path(int level, git_buf *buf)
 {
     return git_libgit2_opts(GIT_OPT_GET_SEARCH_PATH, level, buf);
@@ -28,6 +38,16 @@ import (
 	"runtime"
 	"unsafe"
 )
+
+// DisableStrictHashing disables the hash verification on objects, reducing
+// security but improving the performance by a lot.
+// Abstract change
+func DisableStrictHashing() {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
+	C._disable_strict_hashing()
+}
 
 func SearchPath(level ConfigLevel) (string, error) {
 	var buf C.git_buf
