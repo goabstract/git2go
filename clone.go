@@ -22,6 +22,11 @@ type CloneOptions struct {
 }
 
 func Clone(url string, path string, options *CloneOptions) (*Repository, error) {
+	// abstract change:
+	// Disabling hashing increase the performance on big project at the cost
+	// of lower security
+	DisableStrictHashing()
+
 	curl := C.CString(url)
 	defer C.free(unsafe.Pointer(curl))
 
