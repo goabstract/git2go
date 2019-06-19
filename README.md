@@ -1,5 +1,31 @@
-git2go
-======
+git2go Abstract's Fork
+======================
+
+We created this fork due to the libgit2 team being fairly slow to merge PRs, as well as allowing us to force some libgit2 options that git2go doesn't support.
+
+What changed?
+-------------
+
+You can list all our commits by doing:
+
+```
+git log upstream/master..master
+```
+
+Updating git2go
+---------------
+
+The git2go repo has been added as a remote under `upstream`. Updating git2go is as easy as fetching & rebasing/merging
+
+```
+❯ git fetch upstream
+❯ git checkout master
+❯ git rebase upstream/master
+❯ # fix conflicts
+```
+
+git2go Original README
+======================
 [![GoDoc](https://godoc.org/github.com/libgit2/git2go?status.svg)](http://godoc.org/github.com/libgit2/git2go) [![Build Status](https://travis-ci.org/libgit2/git2go.svg?branch=master)](https://travis-ci.org/libgit2/git2go)
 
 Go bindings for [libgit2](http://libgit2.github.com/).
