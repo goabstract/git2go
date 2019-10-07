@@ -3,6 +3,15 @@ git2go Abstract's Fork
 
 We created this fork due to the libgit2 team being fairly slow to merge PRs, as well as allowing us to force some libgit2 options that git2go doesn't support.
 
+Getting Started
+---------------
+
+To simplify everything you should add a remote to the upstream:
+
+```
+❯ git remote add upstream git@github.com:libgit2/git2go.git
+``` 
+
 What changed?
 -------------
 
@@ -15,7 +24,7 @@ git log upstream/master..master
 Updating git2go
 ---------------
 
-The git2go repo has been added as a remote under `upstream`. Updating git2go is as easy as fetching & merging the remote
+Updating git2go is as easy as fetching & merging the remote
 
 ```
 ❯ git fetch upstream
